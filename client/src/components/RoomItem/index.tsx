@@ -1,11 +1,11 @@
 import React from 'react'
 
-type IRoomItem = {
+interface RoomItemProps {
   active: Boolean
   status: Boolean
 }
 
-function RoomItem({ active, status }: IRoomItem) {
+function RoomItem({ active, status }: RoomItemProps) {
   return (
     <li className={active ? 'active' : ''}>
       <div className="d-flex bd-highlight">

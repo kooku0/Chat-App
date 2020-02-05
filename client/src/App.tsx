@@ -13,7 +13,7 @@ const App = () => {
             <Route path={PAGE_PATHS.SIGNIN} component={Login} />
             <Route path={PAGE_PATHS.ROOM_LIST} component={RoomList} />
           </Switch>
-          <Redirect from="/" to={PAGE_PATHS.CHAT} />
+          <Redirect from="/" to={PAGE_PATHS.SIGNIN} />
         </Router>
       </div>
     </div>
