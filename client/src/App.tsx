@@ -7,6 +7,5 @@ const App = () => {
       <Signin />
     </div>
   )
-}
 
 export default App
