@@ -1,15 +1,20 @@
 import React from 'react'
 
-function RoomItem({ active, status }: any) {
+type IRoomItem = {
+  active: Boolean
+  status: Boolean
+}
+
+function RoomItem({ active, status }: IRoomItem) {
   return (
-    <li className="active">
+    <li className={active ? 'active' : ''}>
       <div className="d-flex bd-highlight">
         <div className="img_cont">
           <img
             src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
             className="rounded-circle user_img"
           />
-          <span className="online_icon"></span>
+          <span className={`online_icon ${status ? '' : 'offline'}`}></span>
         </div>
         <div className="user_info">
           <span>Khalid</span>
