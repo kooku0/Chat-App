@@ -8,9 +8,17 @@ $color-text--disabled: #cdd7e0;
 $color-shadow: rgba(20, 20, 50, 0.12);
 $color-background: #fbfbfd;
 
-body {
-  padding: 0;
+body,
+html {
+  height: 100%;
   margin: 0;
+  background: #7f7fd5;
+  background: -webkit-linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5);
+  background: linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5);
+}
+
+#root {
+  height: 100%;
 }
 
 a {
