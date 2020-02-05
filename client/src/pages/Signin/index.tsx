@@ -1,39 +1,49 @@
-import React, { MouseEvent } from 'react'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
 // import TopBar from '../../components/TopBar'
+import useLogin from '../../hooks/useLogin'
 
 import './style.scss'
 
 function Signin({ history }: any) {
-  const handleLogin = async (e: MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    try {
-      history.push('/room-list')
-    } catch (err) {
-      alert('로그인 실패')
-    }
-  }
+  const loginAction = useLogin()
 
+  // const handleLogin = async (e: MouseEvent) => {
+  //   e.preventDefault()
+  //   e.stopPropagation()
+  //   try {
+  //     history.push('/room-list')
+  //   } catch (err) {
+  //     alert('로그인 실패')
+  //   }
+  // }
+  const [value, setValue] = useState('')
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value)
+  }
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    loginAction.onSuccessLogin(value)
+    setValue('')
+    history.push('/room-list')
+  }
   return (
     <>
       {/* <TopBar /> */}
       <div className="col-md-8 col-xl-6 chat">
         <div className="card container-sm container-sign">
-          <form className="form-sign">
+          <form className="form-sign" onSubmit={onSubmit}>
             <h5 className="form-headline">💬 로그인 💌</h5>
             <div className="form-group">
               <input
                 type="text"
                 className="form-control"
-                // value={authStore.email}
-                // onChange={changeEmail}
                 placeholder="닉네임 입력"
+                value={value}
+                onChange={onChange}
               />
             </div>
-            <button onClick={handleLogin} className="btn btn-block btn-primary">
-              로그인 하기
-            </button>
-
+            <button className="btn btn-block btn-primary">로그인 하기</button>
             <h6 className="txt-terms">
               <a href="#">이용약관</a> 및 <a href="#">개인정보</a> 취급방침
             </h6>
