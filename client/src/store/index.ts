@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import login from './login'
-import room from './room'
+import rooms from './rooms'
 
 const rootReducer = combineReducers({
   login,
-  room,
+  rooms,
 })
 
 export default rootReducer

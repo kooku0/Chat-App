@@ -1,13 +1,13 @@
-import { loadLogin, failLogin, successLogin, logout } from './actions'
+import { addRoom, removeRoom, joinRoom } from './actions'
 
-export type LoginAction =
-  | ReturnType<typeof loadLogin>
-  | ReturnType<typeof failLogin>
-  | ReturnType<typeof successLogin>
-  | ReturnType<typeof logout>
+export type RoomsAction =
+  | ReturnType<typeof addRoom>
+  | ReturnType<typeof removeRoom>
+  | ReturnType<typeof joinRoom>
 
-export type LoginState = {
-  isLoading: Boolean
-  isLogin: Boolean
-  name: String
+export type Room = {
+  id: number
+  members: string[]
 }
+
+export type RoomsState = Room[]
