@@ -1,10 +1,10 @@
-import * as actions from './actions'
+import { loadLogin, failLogin, successLogin, logout } from './actions'
 
 export type LoginAction =
-  | ReturnType<typeof actions.loadLogin>
-  | ReturnType<typeof actions.failLogin>
-  | ReturnType<typeof actions.successLogin>
-  | ReturnType<typeof actions.logout>
+  | ReturnType<typeof loadLogin>
+  | ReturnType<typeof failLogin>
+  | ReturnType<typeof successLogin>
+  | ReturnType<typeof logout>
 
 export type LoginState = {
   isLoading: Boolean
