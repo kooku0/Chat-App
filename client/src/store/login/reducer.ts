@@ -10,14 +10,24 @@ const initialState: LoginState = {
 function login(state: LoginState = initialState, action: LoginAction) {
   switch (action.type) {
     case LOAD_LOGIN:
-      return { isLoading: true, isLogin: false, name: '' }
+      return {
+        isLoading: true,
+        isLogin: false,
+        name: '',
+      }
     case FAIL_LOGIN:
       return initialState
     case SUCCESS_LOGIN:
       console.log('login', action.payload)
-      return { isLoading: false, isLogin: true, name: action.payload }
+      return {
+        isLoading: false,
+        isLogin: true,
+        name: action.payload,
+      }
     case LOGOUT:
-      return { isLogin: false }
+      return {
+        isLogin: false,
+      }
     default:
       return state
   }
