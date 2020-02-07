@@ -17,7 +17,7 @@ function ChatItem({ flag }: ChatItemProps) {
       ) : (
         ''
       )}
-      <div className="msg_cotainer">
+      <div className={`msg_cotainer${flag ? '' : '_send'}`}>
         Hi, how are you samim?
         <span className="msg_time">8:40 AM, Today</span>
       </div>

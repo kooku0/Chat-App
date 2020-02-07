@@ -1,8 +1,9 @@
 import React from 'react'
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { PAGE_PATHS } from './constants'
 import Login from './pages/Signin'
 import RoomList from './pages/RoomList'
+import ChatRoom from './pages/ChatRoom'
 
 const App = () => {
   return (
@@ -12,8 +13,9 @@ const App = () => {
           <Switch>
             <Route path={PAGE_PATHS.SIGNIN} component={Login} />
             <Route path={PAGE_PATHS.ROOM_LIST} component={RoomList} />
+            <Route path={PAGE_PATHS.CHAT} component={ChatRoom} />
           </Switch>
-          <Redirect from="/" to={PAGE_PATHS.SIGNIN} />
+          {/* <Redirect from="/" to={PAGE_PATHS.SIGNIN} /> */}
         </Router>
       </div>
     </div>
