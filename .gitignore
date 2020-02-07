@@ -20,3 +20,5 @@ uploads
 
 **/build/**
 **/public/**
+
+*.log
