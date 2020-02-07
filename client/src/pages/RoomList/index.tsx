@@ -16,7 +16,7 @@ function RoomList() {
         <div className="card-body contacts_body">
           <div className="contacts">
             {rooms.map(room => (
-              <RoomItem key={room.id} active={false} status={false} />
+              <RoomItem key={room.id} id={room.id} active={false} status={false} />
             ))}
           </div>
         </div>

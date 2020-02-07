@@ -1,13 +1,20 @@
 import React from 'react'
+import useName from '../../hooks/useName'
+import parseDateToString from '../../utils/parseDateToString'
+
+import './style.scss'
 
 interface ChatItemProps {
-  flag: Boolean
+  writer: string
+  message: string
+  date: Date
 }
 
-function ChatItem({ flag }: ChatItemProps) {
+function ChatItem({ writer, message, date }: ChatItemProps) {
+  const name = useName()
   return (
-    <div className={`d-flex justify-content-${flag ? 'start' : 'end'} mb-4`}>
-      {flag ? (
+    <div className={`d-flex justify-content-${writer !== name ? 'start' : 'end'} mb-4`}>
+      {writer !== name ? (
         <div className="img_cont_msg">
           <img
             src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
@@ -17,9 +24,19 @@ function ChatItem({ flag }: ChatItemProps) {
       ) : (
         ''
       )}
-      <div className={`msg_cotainer${flag ? '' : '_send'}`}>
-        Hi, how are you samim?
-        <span className="msg_time">8:40 AM, Today</span>
+      {writer !== name ? (
+        <div>
+          <div className="msg_writer">
+            <span>{writer}</span>
+          </div>
+          <br />
+        </div>
+      ) : (
+        ''
+      )}
+      <div className={`msg_cotainer${writer !== name ? '' : '_send'}`}>
+        {message}
+        <span className="msg_time">{parseDateToString(date)}</span>
       </div>
     </div>
   )

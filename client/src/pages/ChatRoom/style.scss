@@ -1,4 +1,10 @@
-body,
+body {
+  height: 100%;
+  margin: 0;
+  background: #7f7fd5;
+  background: -webkit-linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5);
+  background: linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5);
+}
 html {
   height: 100%;
   margin: 0;
@@ -6,7 +12,6 @@ html {
   background: -webkit-linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5);
   background: linear-gradient(to right, #91eae4, #86a8e7, #7f7fd5);
 }
-
 .chat {
   margin-top: auto;
   margin-bottom: auto;
@@ -40,10 +45,10 @@ html {
   background-color: rgba(0, 0, 0, 0.3) !important;
   border: 0 !important;
   color: white !important;
-}
-.search:focus {
-  box-shadow: none !important;
-  outline: 0px !important;
+  &:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+  }
 }
 .type_msg {
   background-color: rgba(0, 0, 0, 0.3) !important;
@@ -51,10 +56,10 @@ html {
   color: white !important;
   height: 60px !important;
   overflow-y: auto;
-}
-.type_msg:focus {
-  box-shadow: none !important;
-  outline: 0px !important;
+  &:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+  }
 }
 .attach_btn {
   border-radius: 15px 0 0 15px !important;
@@ -80,11 +85,11 @@ html {
 .contacts {
   list-style: none;
   padding: 0;
-}
-.contacts li {
-  width: 100% !important;
-  padding: 5px 10px;
-  margin-bottom: 15px !important;
+  li {
+    width: 100% !important;
+    padding: 5px 10px;
+    margin-bottom: 15px !important;
+  }
 }
 .active {
   background-color: rgba(0, 0, 0, 0.3);
@@ -125,24 +130,24 @@ html {
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 15px;
-}
-.user_info span {
-  font-size: 20px;
-  color: white;
-}
-.user_info p {
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.6);
+  span {
+    font-size: 20px;
+    color: white;
+  }
+  p {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.6);
+  }
 }
 .video_cam {
   margin-left: 50px;
   margin-top: 5px;
-}
-.video_cam span {
-  color: white;
-  font-size: 20px;
-  cursor: pointer;
-  margin-right: 20px;
+  span {
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 20px;
+  }
 }
 .msg_cotainer {
   margin-top: auto;
@@ -197,23 +202,23 @@ html {
   top: 30px;
   right: 15px;
   display: none;
-}
-.action_menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.action_menu ul li {
-  width: 100%;
-  padding: 10px 15px;
-  margin-bottom: 5px;
-}
-.action_menu ul li i {
-  padding-right: 10px;
-}
-.action_menu ul li:hover {
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.2);
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      width: 100%;
+      padding: 10px 15px;
+      margin-bottom: 5px;
+      i {
+        padding-right: 10px;
+      }
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
 }
 @media (max-width: 576px) {
   .contacts_card {
