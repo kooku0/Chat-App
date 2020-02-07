@@ -8,6 +8,7 @@ import './style.scss'
 
 function RoomList() {
   const rooms = useRooms()
+
   return (
     <div className="col-md-4 col-xl-3 chat">
       <div className="card mb-sm-3 mb-md-0 contacts_card">
@@ -15,7 +16,7 @@ function RoomList() {
         <div className="card-body contacts_body">
           <div className="contacts">
             {rooms.map(room => (
-              <RoomItem key={room.id} active={true} status={false} />
+              <RoomItem key={room.id} id={room.id} active={false} status={false} />
             ))}
           </div>
         </div>

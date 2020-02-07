@@ -7,7 +7,7 @@ export type LoginAction =
   | ReturnType<typeof logout>
 
 export type LoginState = {
-  isLoading: Boolean
-  isLogin: Boolean
-  name: String
+  isLoading: boolean
+  isLogin: boolean
+  name: string
 }

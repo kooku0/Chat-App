@@ -9,7 +9,7 @@ export default function useLogin() {
 
   const onLoadLogin = useCallback(() => dispatch(loadLogin()), [dispatch])
   const onFailLogin = useCallback(() => dispatch(failLogin()), [dispatch])
-  const onSuccessLogin = useCallback((name: String) => dispatch(successLogin(name)), [dispatch])
+  const onSuccessLogin = useCallback((name: string) => dispatch(successLogin(name)), [dispatch])
   const onLogout = useCallback(() => dispatch(logout()), [dispatch])
 
   return {
