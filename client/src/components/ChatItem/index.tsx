@@ -34,7 +34,7 @@ function ChatItem({ writer, message, date }: ChatItemProps) {
       ) : (
         ''
       )}
-      <div className={`msg_cotainer${writer !== name ? '' : '_send'}`}>
+      <div className={`msg_box msg_cotainer${writer !== name ? '' : '_send'}`}>
         {message}
         <span className="msg_time">{parseDateToString(date)}</span>
       </div>

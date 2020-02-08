@@ -2,12 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 interface RoomItemProps {
-  id: Number
+  id: number
+  members: string[]
   active: Boolean
   status: Boolean
 }
 
-function RoomItem({ id, active, status }: RoomItemProps) {
+function RoomItem({ id, members, active, status }: RoomItemProps) {
   return (
     <Link to={`/chat/${id}`}>
       <li className={active ? 'active' : ''}>
@@ -20,7 +21,7 @@ function RoomItem({ id, active, status }: RoomItemProps) {
             <span className={`online_icon ${status ? '' : 'offline'}`}></span>
           </div>
           <div className="user_info">
-            <span>Khalid</span>
+            <span>{members.toString()}</span>
             <p>Kalid is online</p>
           </div>
         </div>

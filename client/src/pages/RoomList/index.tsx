@@ -1,14 +1,14 @@
 import React from 'react'
-
 import ListHeader from '../../components/ListHeader'
 import RoomItem from '../../components/RoomItem'
 import useRooms from '../../hooks/useRooms'
+import useUpdateRooms from '../../hooks/useUpdateRooms'
 
 import './style.scss'
 
 function RoomList() {
   const rooms = useRooms()
-
+  useUpdateRooms()
   return (
     <div className="col-md-4 col-xl-3 chat">
       <div className="card mb-sm-3 mb-md-0 contacts_card">
@@ -16,7 +16,13 @@ function RoomList() {
         <div className="card-body contacts_body">
           <div className="contacts">
             {rooms.map(room => (
-              <RoomItem key={room.id} id={room.id} active={false} status={false} />
+              <RoomItem
+                key={room.roomId}
+                id={room.roomId}
+                members={room.members}
+                active={false}
+                status={false}
+              />
             ))}
           </div>
         </div>
