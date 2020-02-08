@@ -24,6 +24,18 @@ const initialState: MessagesState = [
         message: '그래 안녕',
         date: new Date(),
       },
+      {
+        id: 3,
+        writer: '아무개',
+        message: '그래 안녕',
+        date: new Date(),
+      },
+      {
+        id: 4,
+        writer: '아무개2',
+        message: '그래 안녕',
+        date: new Date(),
+      },
     ],
   },
 ]
@@ -35,7 +47,7 @@ function messages(state: MessagesState = initialState, action: MessagesAction): 
       let roomIdx = state.findIndex(room => room.roomId === roomId)
       const messageList = state[roomIdx].messages
       const nextId = Math.max(...messageList.map(msg => msg.id)) + 1
-      state[roomIdx].messages.concat({
+      state[roomIdx].messages.push({
         id: nextId,
         writer: writer,
         message: msg,

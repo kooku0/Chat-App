@@ -1,4 +1,7 @@
 import React from 'react'
+import ChatMenu from '../ChatMenu'
+
+import './style.scss'
 
 function ChatHeader() {
   return (
@@ -15,34 +18,11 @@ function ChatHeader() {
           <span>Chat with Khalid</span>
           <p>1767 Messages</p>
         </div>
-        <div className="video_cam">
-          <span>
-            <i className="fas fa-video"></i>
-          </span>
-          <span>
-            <i className="fas fa-phone"></i>
-          </span>
-        </div>
       </div>
       <span id="action_menu_btn">
         <i className="fas fa-ellipsis-v"></i>
       </span>
-      <div className="action_menu">
-        <ul>
-          <li>
-            <i className="fas fa-user-circle"></i> View profile
-          </li>
-          <li>
-            <i className="fas fa-users"></i> Add to close friends
-          </li>
-          <li>
-            <i className="fas fa-plus"></i> Add to group
-          </li>
-          <li>
-            <i className="fas fa-ban"></i> Block
-          </li>
-        </ul>
-      </div>
+      <ChatMenu />
     </div>
   )
 }

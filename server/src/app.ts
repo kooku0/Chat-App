@@ -1,5 +1,8 @@
+import * as path from 'path'
 import * as express from 'express'
 import * as http from 'http'
+import * as cors from 'cors'
+
 import logger from './logger'
 
 // Shutdown codes
@@ -16,6 +19,10 @@ const graceShutdown = (signal: string) => {
 
 async function runServer() {
   const app = express()
+  app.use(express.json())
+  app.use(cors())
+  app.use(express.static(path.join(__dirname, 'public')))
+
   const server = app.listen(5000, () => {
     logger.info('Server app listening on port 5000!')
   })

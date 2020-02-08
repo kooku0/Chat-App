@@ -5,7 +5,10 @@ export default function useInput(defaultValue: string, requestFunc: Function) {
 
   const onChange = ({ target }: ChangeEvent<HTMLInputElement>) => setValue(target.value)
   const onKeyDown = ({ keyCode }: KeyboardEvent) => {
-    if (keyCode === 13) requestFunc(value)
+    if (keyCode === 13 && value !== '') {
+      requestFunc(value)
+      setValue('')
+    }
   }
   return { value, onChange, onKeyDown }
 }
