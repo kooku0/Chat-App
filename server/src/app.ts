@@ -46,7 +46,7 @@ async function runServer() {
     })
     socket.on('send:message', (message: Message) => {
       console.log(message)
-      io.sockets.in(message.roomId).emit('send:message', message)
+      socket.to(message.roomId).emit('rcv:message', message)
     })
     socket.on('disconnect', () => {
       console.log(`${socket.name} 님이 퇴장하셨습니다`)

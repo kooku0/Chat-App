@@ -20,13 +20,13 @@ export default function useSendMsg(roomId: string) {
       }),
     [],
   )
-  const recieveMessage = useCallback(() => {
-    socket?.on('send:message', (message: any) =>
+  const recieveMessage = () =>
+    socket?.on('rcv:message', (message: any) => {
+      console.log(message)
       dispatch(
         addMessage(message.roomId, message.msgId, message.name, message.message, message.date),
-      ),
-    )
-  }, [dispatch])
+      )
+    })
   const addMsgToStore = useCallback(
     (message: string) => dispatch(addMessage(roomId, generate(12), name, message, new Date())),
     [dispatch],

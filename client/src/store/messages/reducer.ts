@@ -45,7 +45,6 @@ function messages(state: MessagesState = initialState, action: MessagesAction): 
     case ADD_MESSAGE:
       let { roomId, msgId, writer, message, date } = action.payload
       let roomIdx = state.findIndex(room => room.roomId === roomId)
-      console.log(roomIdx)
       if (roomIdx === -1) {
         state.push({
           roomId: roomId,
@@ -66,7 +65,6 @@ function messages(state: MessagesState = initialState, action: MessagesAction): 
           date: date,
         })
       }
-      console.log(state)
       return [...state]
     case DELETE_MESSAGE:
       roomIdx = state.findIndex(room => room.roomId === action.payload.roomId)

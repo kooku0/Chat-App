@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
 import ChatHeader from '../../components/ChatHeader'
 import ChatBody from '../../components/ChatBody'
 import ChatFooter from '../../components/ChatFooter'
@@ -9,14 +10,14 @@ import useSendMsg from 'src/hooks/useSendMsg'
 
 import './style.scss'
 
-function ChatRoom({ match }: any) {
+function ChatRoom({ match }: RouteComponentProps<{ id: string }>) {
   const roomId = match.params?.id
-  const messages = useMessages(roomId) // roomId
+  const messages = useMessages(roomId)
   const roomInfo = useRoomInfo(roomId)
-  const recieveMessage = useSendMsg(roomId).recieveMessage
+  const { recieveMessage, sendMessage, addMsgToStore } = useSendMsg(roomId)
+  recieveMessage()
   useEffect(() => {
     scrollToBottom('card-body')
-    recieveMessage()
   }, [messages.length])
 
   return (
@@ -24,7 +25,7 @@ function ChatRoom({ match }: any) {
       <div className="card">
         <ChatHeader roomInfo={roomInfo} />
         <ChatBody messages={messages} />
-        <ChatFooter roomId={roomId} />
+        <ChatFooter sendMessage={sendMessage} addMsgToStore={addMsgToStore} />
       </div>
     </div>
   )

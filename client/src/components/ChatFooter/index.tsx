@@ -1,15 +1,14 @@
 import React from 'react'
-import useSendMsg from '../../hooks/useSendMsg'
 import useInput from '../../hooks/useInput'
 
 import './style.scss'
 
 interface ChatFooterProps {
-  roomId: string
+  sendMessage: (msg: string) => void
+  addMsgToStore: (msg: string) => void
 }
 
-function ChatFooter({ roomId }: ChatFooterProps) {
-  const { sendMessage, addMsgToStore } = useSendMsg(roomId)
+function ChatFooter({ sendMessage, addMsgToStore }: ChatFooterProps) {
   const inputActions = useInput('', [addMsgToStore, sendMessage])
   return (
     <div className="card-footer">
