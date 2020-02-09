@@ -4,7 +4,7 @@ import * as http from 'http'
 import * as cors from 'cors'
 import * as socketIO from 'socket.io'
 import { generate } from 'randomstring'
-import { User, Room } from './types'
+import { User, Room, Message } from './types'
 // import chatRouter from './routes/chat'
 
 import logger from './logger'
@@ -33,29 +33,40 @@ async function runServer() {
   //   res.sendFile(path.join(__dirname, 'public/index.html'))
   // })
   app.set('socketio', io)
-  // app.get('*', (req, res) => res.send('hello'))
-  const rooms: Room[] = new Array()
-  const users: User[] = new Array()
+
   io.sockets.on('connection', (socket: any) => {
     console.log(`connected: ${socket.id}`)
-    socket.on('login', (name: string, fn: any) => {
-      console.log(`${socket.id} : ${name}`)
-      socket.name = name
-      rooms.push({
-        roomId: generate(),
-        members: [name],
-      })
-      users.push({
-        socketId: socket.id,
-        state: 'on-line',
-        user: name,
-      })
-      socket.broadcast.emit('update-user', users)
-      fn(rooms)
+    socket.on('login', async (name: string, fn: any) => {
+      socket.id = name
+      fn(getActiveRooms())
+    })
+    socket.on('enter-room', (roomId: string) => {
+      socket.join(roomId)
+      io.emit('update-room-list', getActiveRooms())
+    })
+    socket.on('send:message', (message: Message) => {
+      console.log(message)
+      io.sockets.in(message.roomId).emit('send:message', message)
     })
     socket.on('disconnect', () => {
-      users.map(user => (user.socketId === socket.id ? { ...user, state: 'off-line' } : user))
+      console.log(`${socket.name} 님이 퇴장하셨습니다`)
     })
+    function getActiveRooms() {
+      const activeRooms = new Array()
+      Object.keys(io.sockets.adapter.rooms).forEach(room => {
+        let isRoom = true
+        Object.keys(io.sockets.adapter.sids).forEach(id => {
+          isRoom = id === room ? false : isRoom
+        })
+        if (isRoom)
+          activeRooms.push({
+            roomId: room,
+            members: Object.keys(io.sockets.adapter.rooms[room].sockets),
+          })
+      })
+      console.log(activeRooms)
+      return activeRooms
+    }
   })
 
   const expressServer = server.listen(5000, () => {

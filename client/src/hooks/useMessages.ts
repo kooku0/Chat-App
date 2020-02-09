@@ -3,7 +3,7 @@ import { RootState } from '../store'
 
 import { Message } from '../store/messages'
 
-export default function useMessages(roomId: Number): Message[] {
+export default function useMessages(roomId: string): Message[] {
   const messages = useSelector((state: RootState) => state.messages).find(
     room => room.roomId === roomId,
   )

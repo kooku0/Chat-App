@@ -10,3 +10,11 @@ export type Room = {
   roomId: string
   members: string[]
 }
+
+export type Message = {
+  roomId: string
+  msgId: string
+  writer: string
+  message: string
+  date: Date
+}

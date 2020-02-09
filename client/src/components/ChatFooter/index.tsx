@@ -4,9 +4,13 @@ import useInput from '../../hooks/useInput'
 
 import './style.scss'
 
-function ChatFooter() {
-  const useSend = useSendMsg(1) // roomId
-  const inputActions = useInput('', useSend)
+interface ChatFooterProps {
+  roomId: string
+}
+
+function ChatFooter({ roomId }: ChatFooterProps) {
+  const { sendMessage, addMsgToStore } = useSendMsg(roomId)
+  const inputActions = useInput('', [addMsgToStore, sendMessage])
   return (
     <div className="card-footer">
       <div className="input-group">

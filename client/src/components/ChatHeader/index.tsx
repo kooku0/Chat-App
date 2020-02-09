@@ -1,9 +1,14 @@
 import React from 'react'
 import ChatMenu from '../ChatMenu'
+import { Room } from 'src/store/rooms'
 
 import './style.scss'
 
-function ChatHeader() {
+interface ChatHeaderProps {
+  roomInfo?: Room
+}
+
+function ChatHeader({ roomInfo }: ChatHeaderProps) {
   return (
     <div className="card-header msg_head">
       <div className="d-flex bd-highlight">
@@ -15,8 +20,8 @@ function ChatHeader() {
           <span className="online_icon"></span>
         </div>
         <div className="user_info">
-          <span>Chat with Khalid</span>
-          <p>1767 Messages</p>
+          <span>{roomInfo?.roomId}</span>
+          <p>{`${roomInfo?.members.length}명 참가중`}</p>
         </div>
       </div>
       <span id="action_menu_btn">

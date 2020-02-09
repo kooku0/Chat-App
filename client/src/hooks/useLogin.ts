@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
-import { loadLogin, failLogin, logout } from '../store/login'
+import { loadLogin, failLogin, logout, successLogin } from '../store/login'
 import { RoomsState } from 'src/store/rooms'
+// import parseObjectToArray from 'src/utils/parseObjectToArray'
 import { setRooms } from '../store/rooms'
 // import { useCallback } from 'react'
 
@@ -13,6 +14,8 @@ export default function useLogin() {
     console.log(name)
     dispatch(loadLogin())
     socket?.emit('login', name, (rooms: RoomsState) => {
+      // parseObjectToArray(rooms)
+      dispatch(successLogin(name))
       console.log(rooms)
       dispatch(setRooms(rooms))
     })

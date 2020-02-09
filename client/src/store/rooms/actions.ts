@@ -9,14 +9,14 @@ export const addRoom = (name: string) => ({
   type: ADD_ROOM,
   payload: name,
 })
-export const removeRoom = (id: number) => ({
+export const removeRoom = (roomId: string) => ({
   type: REMOVE_ROOM,
-  payload: id,
+  payload: roomId,
 })
-export const joinRoom = (id: number, name: string) => ({
+export const joinRoom = (roomId: string, name: string) => ({
   type: JOIN_ROOM,
   payload: {
-    id: id,
+    roomId: roomId,
     name: name,
   },
 })

@@ -6,13 +6,13 @@ export type MessagesAction =
   | ReturnType<typeof removeRoomMsg>
 
 export type Message = {
-  id: number
+  id: string
   message: string
   writer: string
   date: Date
 }
 export type RoomMessages = {
-  roomId: number
+  roomId: string
   messages: Message[]
 }
 export type MessagesState = RoomMessages[]

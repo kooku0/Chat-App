@@ -6,7 +6,7 @@ export default function useUpdateRooms() {
   const dispatch = useDispatch()
   const socket = useSelector((state: RootState) => state.socketIO.socket)
 
-  socket?.on('update-user', (rooms: RoomsState) => {
+  socket?.on('update-room-list', (rooms: RoomsState) => {
     dispatch(setRooms(rooms))
   })
 }

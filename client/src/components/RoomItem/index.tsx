@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 interface RoomItemProps {
-  id: number
+  id: string
   members: string[]
   active: Boolean
   status: Boolean
@@ -21,8 +21,8 @@ function RoomItem({ id, members, active, status }: RoomItemProps) {
             <span className={`online_icon ${status ? '' : 'offline'}`}></span>
           </div>
           <div className="user_info">
-            <span>{members.toString()}</span>
-            <p>Kalid is online</p>
+            <span>{id.toString()}</span>
+            <p>{`${members.length}명 참가중`}</p>
           </div>
         </div>
       </li>

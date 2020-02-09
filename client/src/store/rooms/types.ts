@@ -7,7 +7,7 @@ export type RoomsAction =
   | ReturnType<typeof setRooms>
 
 export type Room = {
-  roomId: number
+  roomId: string
   members: string[]
 }
 
