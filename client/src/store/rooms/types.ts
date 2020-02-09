@@ -1,12 +1,13 @@
-import { addRoom, removeRoom, joinRoom } from './actions'
+import { addRoom, removeRoom, joinRoom, setRooms } from './actions'
 
 export type RoomsAction =
   | ReturnType<typeof addRoom>
   | ReturnType<typeof removeRoom>
   | ReturnType<typeof joinRoom>
+  | ReturnType<typeof setRooms>
 
 export type Room = {
-  id: number
+  roomId: string
   members: string[]
 }
 

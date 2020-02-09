@@ -22,3 +22,4 @@ uploads
 **/public/**
 
 *.log
+/logs

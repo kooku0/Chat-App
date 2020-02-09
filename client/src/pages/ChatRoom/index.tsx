@@ -1,23 +1,31 @@
-import React from 'react'
-import ChatItem from '../../components/ChatItem'
+import React, { useEffect } from 'react'
+import { RouteComponentProps } from 'react-router-dom'
 import ChatHeader from '../../components/ChatHeader'
+import ChatBody from '../../components/ChatBody'
 import ChatFooter from '../../components/ChatFooter'
 import useMessages from '../../hooks/useMessages'
+import scrollToBottom from '../../utils/scrollToBottom'
+import useRoomInfo from 'src/hooks/useRoomInfo'
+import useSendMsg from 'src/hooks/useSendMsg'
 
 import './style.scss'
 
-function ChatRoom() {
-  const messages = useMessages(1)
+function ChatRoom({ match }: RouteComponentProps<{ id: string }>) {
+  const roomId = match.params?.id
+  const messages = useMessages(roomId)
+  const roomInfo = useRoomInfo(roomId)
+  const { recieveMessage, sendMessage, addMsgToStore } = useSendMsg(roomId)
+  recieveMessage()
+  useEffect(() => {
+    scrollToBottom('card-body')
+  }, [messages.length])
+
   return (
     <div className="col-md-8 col-xl-6 chat">
       <div className="card">
-        <ChatHeader />
-        <div className="card-body msg_card_body">
-          {messages.map(({ id, writer, message, date }) => (
-            <ChatItem key={id} writer={writer} message={message} date={date} />
-          ))}
-        </div>
-        <ChatFooter />
+        <ChatHeader roomInfo={roomInfo} />
+        <ChatBody messages={messages} />
+        <ChatFooter sendMessage={sendMessage} addMsgToStore={addMsgToStore} />
       </div>
     </div>
   )

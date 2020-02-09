@@ -5,17 +5,7 @@ import useLogin from '../../hooks/useLogin'
 import './style.scss'
 
 function Signin({ history }: any) {
-  const loginAction = useLogin()
-
-  // const handleLogin = async (e: MouseEvent) => {
-  //   e.preventDefault()
-  //   e.stopPropagation()
-  //   try {
-  //     history.push('/room-list')
-  //   } catch (err) {
-  //     alert('로그인 실패')
-  //   }
-  // }
+  const { onLogin } = useLogin()
   const [value, setValue] = useState('')
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +13,9 @@ function Signin({ history }: any) {
   }
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
-    loginAction.onSuccessLogin(value)
+    e.stopPropagation()
+    // loginSocket(value)
+    onLogin(value)
     setValue('')
     history.push('/room-list')
   }

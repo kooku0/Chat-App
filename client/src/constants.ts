@@ -7,5 +7,5 @@ export enum PAGE_PATHS {
   SIGNUP = '/signup',
   SIGNIN = '/signin',
   ROOM_LIST = '/room-list',
-  CHAT = '/chat',
+  CHAT = '/chat/:id',
 }
