@@ -9,7 +9,7 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
 const options = {
   file: {
     level: 'info',
-    filename: `logs/test.log`,
+    filename: `logs/server.log`,
     handleExceptions: true,
     json: false,
     maxsize: 5242880, // 5MB

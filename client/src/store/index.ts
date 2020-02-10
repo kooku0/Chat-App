@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import messages from './messages'
-import socketIO from './SocketIO'
+import socketIO from './socketIO'
 import login from './login'
 import rooms from './rooms'
 

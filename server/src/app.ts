@@ -35,23 +35,23 @@ async function runServer() {
   app.set('socketio', io)
 
   io.sockets.on('connection', (socket: any) => {
-    console.log(`connected: ${socket.id}`)
-    const socketId = socket.id
+    logger.info(`connected: ${socket.id}`)
     socket.on('login', async (name: string, fn: any) => {
       users.set(socket.id, name)
       fn(getActiveRooms())
     })
     socket.on('enter-room', (roomId: string) => {
-      console.log(socket.id, roomId)
+      logger.info(`enter: ${roomId} <= ${socket.id}`)
       socket.join(roomId)
       io.emit('update-room-list', getActiveRooms())
     })
     socket.on('send:message', (message: Message) => {
+      logger.info(`message(send): ${message}`)
       io.sockets.in(message.roomId).emit('rcv:message', message)
     })
     socket.on('disconnect', () => {
       users.delete(socket.id)
-      console.log(`${socket.name} 님이 퇴장하셨습니다`)
+      logger.info(`disconnected: ${socket.id}`)
     })
     function getActiveRooms() {
       const activeRooms = new Array()
@@ -75,7 +75,6 @@ async function runServer() {
           })
         }
       })
-      console.log(activeRooms)
       return activeRooms
     }
   })

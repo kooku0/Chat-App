@@ -1,6 +1,6 @@
 import React from 'react'
 import ChatMenu from '../ChatMenu'
-import { Room } from 'src/store/rooms'
+import { Room } from '../../store/rooms'
 
 import './style.scss'
 

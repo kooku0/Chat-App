@@ -3,7 +3,7 @@ import { RouteComponentProps } from 'react-router-dom'
 import ListHeader from '../../components/ListHeader'
 import ListBody from '../../components/ListBody'
 import useUpdateRooms from '../../hooks/useUpdateRooms'
-import useEnterRoom from 'src/hooks/useEnterRoom'
+import useEnterRoom from '../../hooks/useEnterRoom'
 
 import './style.scss'
 
