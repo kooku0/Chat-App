@@ -20,7 +20,7 @@ const graceShutdown = (signal: string) => {
   logger.info(`Stopping server with signal: ${signal}`)
   process.exit(0)
 }
-
+const users = new Map()
 async function runServer() {
   const app = express()
   app.use(express.json())
@@ -36,19 +36,21 @@ async function runServer() {
 
   io.sockets.on('connection', (socket: any) => {
     console.log(`connected: ${socket.id}`)
+    const socketId = socket.id
     socket.on('login', async (name: string, fn: any) => {
-      socket.id = name
+      users.set(socket.id, name)
       fn(getActiveRooms())
     })
     socket.on('enter-room', (roomId: string) => {
+      console.log(socket.id, roomId)
       socket.join(roomId)
       io.emit('update-room-list', getActiveRooms())
     })
     socket.on('send:message', (message: Message) => {
-      console.log(message)
-      socket.to(message.roomId).emit('rcv:message', message)
+      io.sockets.in(message.roomId).emit('rcv:message', message)
     })
     socket.on('disconnect', () => {
+      users.delete(socket.id)
       console.log(`${socket.name} 님이 퇴장하셨습니다`)
     })
     function getActiveRooms() {
@@ -58,11 +60,20 @@ async function runServer() {
         Object.keys(io.sockets.adapter.sids).forEach(id => {
           isRoom = id === room ? false : isRoom
         })
-        if (isRoom)
+        if (isRoom) {
+          const members = new Array()
+          const roomIds = Object.keys(io.sockets.adapter.rooms[room].sockets)
+          for (let socketId of roomIds) {
+            members.push({
+              socketId: socketId,
+              name: users.get(socketId),
+            })
+          }
           activeRooms.push({
             roomId: room,
-            members: Object.keys(io.sockets.adapter.rooms[room].sockets),
+            members: members,
           })
+        }
       })
       console.log(activeRooms)
       return activeRooms

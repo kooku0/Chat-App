@@ -25,11 +25,8 @@ function ChatItem({ writer, message, date }: ChatItemProps) {
         ''
       )}
       {writer !== name ? (
-        <div>
-          <div className="msg_writer">
-            <span>{writer}</span>
-          </div>
-          <br />
+        <div className="msg_writer">
+          <span>{writer}</span>
         </div>
       ) : (
         ''

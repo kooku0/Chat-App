@@ -4,7 +4,6 @@ import ChatHeader from '../../components/ChatHeader'
 import ChatBody from '../../components/ChatBody'
 import ChatFooter from '../../components/ChatFooter'
 import useMessages from '../../hooks/useMessages'
-import scrollToBottom from '../../utils/scrollToBottom'
 import useRoomInfo from 'src/hooks/useRoomInfo'
 import useSendMsg from 'src/hooks/useSendMsg'
 
@@ -14,12 +13,13 @@ function ChatRoom({ match }: RouteComponentProps<{ id: string }>) {
   const roomId = match.params?.id
   const messages = useMessages(roomId)
   const roomInfo = useRoomInfo(roomId)
-  const { recieveMessage, sendMessage, addMsgToStore } = useSendMsg(roomId)
-  recieveMessage()
+  const { recieveMessage, sendMessage, addMsgToStore, socketOff } = useSendMsg(roomId)
   useEffect(() => {
-    scrollToBottom('card-body')
-  }, [messages.length])
-
+    recieveMessage()
+    return function cleanup() {
+      socketOff()
+    }
+  }, [])
   return (
     <div className="col-md-8 col-xl-6 chat">
       <div className="card">

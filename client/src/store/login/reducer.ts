@@ -4,6 +4,7 @@ import { LoginState, LoginAction } from './types'
 const initialState: LoginState = {
   isLoading: false,
   isLogin: false,
+  socketId: '',
   name: '',
 }
 
@@ -18,11 +19,11 @@ function login(state: LoginState = initialState, action: LoginAction) {
     case FAIL_LOGIN:
       return initialState
     case SUCCESS_LOGIN:
-      console.log('login', action.payload)
       return {
         isLoading: false,
         isLogin: true,
-        name: action.payload,
+        socketId: action.payload.socketId,
+        name: action.payload.name,
       }
     case LOGOUT:
       return {

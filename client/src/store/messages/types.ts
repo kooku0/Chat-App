@@ -6,7 +6,7 @@ export type MessagesAction =
   | ReturnType<typeof removeRoomMsg>
 
 export type Message = {
-  id: string
+  msgId: string
   message: string
   writer: string
   date: Date
