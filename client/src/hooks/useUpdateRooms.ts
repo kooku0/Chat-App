@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { RoomsState, setRooms } from 'src/store/rooms'
-import { RootState } from 'src/store'
+import { RoomsState, setRooms } from '../store/rooms'
+import { RootState } from '../store'
 
 export default function useUpdateRooms() {
   const dispatch = useDispatch()

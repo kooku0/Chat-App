@@ -5,7 +5,7 @@ import { addMessage } from '../store/messages'
 import useName from './useName'
 import { generate } from 'randomstring'
 
-export default function useSendMsg(roomId: string) {
+export default function useMessageActions(roomId: string) {
   const dispatch = useDispatch()
   const socket = useSelector((state: RootState) => state.socketIO.socket)
   const writer = useName()
@@ -23,7 +23,6 @@ export default function useSendMsg(roomId: string) {
   const recieveMessage = useCallback(
     () =>
       socket?.on('rcv:message', (message: any) => {
-        console.log(message)
         dispatch(
           addMessage(
             message.roomId,

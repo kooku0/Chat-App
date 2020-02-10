@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Member } from 'src/store/rooms'
+import { Member } from '../../store/rooms'
 
 interface RoomItemProps {
   id: string

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import RoomItem from 'src/components/RoomItem'
+import RoomItem from '../../components/RoomItem'
 import useRooms from '../../hooks/useRooms'
-import useName from 'src/hooks/useName'
+import useName from '../../hooks/useName'
 
 interface ListBodyProps {
   filterRoomId: string

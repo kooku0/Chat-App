@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import ChatItem from '../../components/ChatItem'
-import { Message } from 'src/store/messages'
+import { Message } from '../../store/messages'
 import scrollToBottom from '../../utils/scrollToBottom'
 
 interface ChatBodyProps {

@@ -18,8 +18,5 @@ Thumbs.db
 
 uploads
 
-**/build/**
-**/public/**
-
 *.log
 /logs

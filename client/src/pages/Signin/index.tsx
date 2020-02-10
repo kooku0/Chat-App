@@ -1,5 +1,4 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react'
-// import TopBar from '../../components/TopBar'
 import useLogin from '../../hooks/useLogin'
 
 import './style.scss'
@@ -14,7 +13,6 @@ function Signin({ history }: any) {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
     e.stopPropagation()
-    // loginSocket(value)
     onLogin(value)
     setValue('')
     history.push('/room-list')

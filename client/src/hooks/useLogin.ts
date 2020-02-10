@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 import { loadLogin, failLogin, logout, successLogin } from '../store/login'
-import { RoomsState } from 'src/store/rooms'
+import { RoomsState } from '../store/rooms'
 import { setRooms } from '../store/rooms'
 
 export default function useLogin() {

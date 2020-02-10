@@ -1,6 +1,8 @@
 export enum STORES {
-  AUTH_STORE = 'authStore',
-  PRODUCTS_STORE = 'productsStore',
+  LOGIN_STORE = 'authStore',
+  SOCKETIO_STORE = 'socketIOStore',
+  MESSAGES_STORE = 'messagesStore',
+  ROOMS_STORE = 'roomsStore',
 }
 
 export enum PAGE_PATHS {
