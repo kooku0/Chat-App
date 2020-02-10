@@ -29,7 +29,9 @@
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 15px;
+
   span {
+    text-overflow: ellipsis;
     font-size: 13px;
     color: white;
   }
