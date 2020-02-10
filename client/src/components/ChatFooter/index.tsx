@@ -8,8 +8,8 @@ interface ChatFooterProps {
   addMsgToStore: (msg: string) => void
 }
 
-function ChatFooter({ sendMessage, addMsgToStore }: ChatFooterProps) {
-  const inputActions = useInput('', [addMsgToStore, sendMessage])
+function ChatFooter({ sendMessage }: ChatFooterProps) {
+  const inputActions = useInput('', [sendMessage])
   return (
     <div className="card-footer">
       <div className="input-group">

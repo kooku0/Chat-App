@@ -8,30 +8,41 @@ import { generate } from 'randomstring'
 export default function useSendMsg(roomId: string) {
   const dispatch = useDispatch()
   const socket = useSelector((state: RootState) => state.socketIO.socket)
-  const name = useName()
+  const writer = useName()
   const sendMessage = useCallback(
     (message: string) =>
       socket?.emit('send:message', {
         roomId: roomId,
         msgId: generate(12),
-        writer: name,
+        writer: writer,
         message: message,
         date: new Date(),
       }),
     [],
   )
-  const recieveMessage = () =>
-    socket?.on('rcv:message', (message: any) => {
-      console.log(message)
-      dispatch(
-        addMessage(message.roomId, message.msgId, message.name, message.message, message.date),
-      )
-    })
+  const recieveMessage = useCallback(
+    () =>
+      socket?.on('rcv:message', (message: any) => {
+        console.log(message)
+        dispatch(
+          addMessage(
+            message.roomId,
+            message.msgId,
+            message.writer,
+            message.message,
+            new Date(message.date),
+          ),
+        )
+      }),
+    [socket, dispatch],
+  )
   const addMsgToStore = useCallback(
-    (message: string) => dispatch(addMessage(roomId, generate(12), name, message, new Date())),
+    (message: string) => dispatch(addMessage(roomId, generate(12), writer, message, new Date())),
     [dispatch],
   )
+  const socketOff = useCallback(() => socket?.off('rcv:message'), [socket])
   return {
+    socketOff,
     sendMessage,
     recieveMessage,
     addMsgToStore,

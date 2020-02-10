@@ -5,8 +5,11 @@ export const LOGOUT = 'login/LOGOUT' as const
 
 export const loadLogin = () => ({ type: LOAD_LOGIN })
 export const failLogin = () => ({ type: FAIL_LOGIN })
-export const successLogin = (name: string) => ({
+export const successLogin = (name: string, socketId: string) => ({
   type: SUCCESS_LOGIN,
-  payload: name,
+  payload: {
+    name: name,
+    socketId: socketId,
+  },
 })
 export const logout = () => ({ type: LOGOUT })

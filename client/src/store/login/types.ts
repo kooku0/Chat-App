@@ -9,5 +9,6 @@ export type LoginAction =
 export type LoginState = {
   isLoading: boolean
   isLogin: boolean
+  socketId: string
   name: string
 }

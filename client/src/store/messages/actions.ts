@@ -18,11 +18,11 @@ export const addMessage = (
     date: date,
   },
 })
-export const deleteMessage = (roomId: string, id: string) => ({
+export const deleteMessage = (roomId: string, msgId: string) => ({
   type: DELETE_MESSAGE,
   payload: {
     roomId: roomId,
-    id: id,
+    msgId: msgId,
   },
 })
 export const removeRoomMsg = (roomId: string) => ({

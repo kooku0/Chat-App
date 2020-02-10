@@ -1,10 +1,7 @@
 import { ADD_ROOM, REMOVE_ROOM, JOIN_ROOM, SET_ROOMS } from './actions'
 import { RoomsState, RoomsAction } from './types'
 
-const initialState: RoomsState = [
-  { roomId: '1', members: ['jhon', 'mike'] },
-  { roomId: '2', members: ['doosan'] },
-]
+const initialState: RoomsState = []
 
 function rooms(state: RoomsState = initialState, action: RoomsAction) {
   switch (action.type) {
@@ -19,7 +16,13 @@ function rooms(state: RoomsState = initialState, action: RoomsAction) {
     case JOIN_ROOM:
       return state.map(room =>
         room.roomId === action.payload.roomId
-          ? { ...room, member: room.members.push(action.payload.name) }
+          ? {
+              ...room,
+              member: room.members.push({
+                socketId: action.payload.socketId,
+                name: action.payload.name,
+              }),
+            }
           : room,
       )
     case SET_ROOMS:
