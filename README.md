@@ -54,7 +54,9 @@ npm run build
 
 ## 실행방법
 
-### window
+따로 install과 build를 할 필요는 없습니다.
+
+### windows
 
 루트폴더에서 실행하시면 됩니다.
 
@@ -66,6 +68,8 @@ npm run start
 
 mac os의 경우 `script`를 수정해야합니다.
 
+> 다음과 같이 start script 앞에 `set`을 빼줍니다.
+
 ```json
 // package.json
  "scripts": {
@@ -73,8 +77,12 @@ mac os의 경우 `script`를 수정해야합니다.
   },
 ```
 
-위와 같이 앞에 `set`을 빼주어야 합니다.
+루트폴더에서 실행시킵니다.
 
 ```shell
 npm run start
 ```
+
+---
+
+`http://localhost:5000`에서 확인하실 수 있습니다.
