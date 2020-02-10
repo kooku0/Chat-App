@@ -1,5 +1,5 @@
 {
-  "name": "TypeScript_Node.js_Template",
+  "name": "server",
   "version": "0.0.1",
   "description": "ts-node test",
   "main": "app.ts",

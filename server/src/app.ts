@@ -27,31 +27,32 @@ async function runServer() {
   app.use(cors())
   const server = http.createServer(app)
   const io: SocketIO.Server = socketIO(server)
-  // app.use(express.static(path.join(__dirname, 'public')))
+  app.use(express.static(path.join(__dirname, '../../client/build')))
   // app.use('/api/signin', chatRouter)
-  // app.get('*', (req, res) => {
-  //   res.sendFile(path.join(__dirname, 'public/index.html'))
-  // })
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../client/build/index.html'))
+  })
   app.set('socketio', io)
 
   io.sockets.on('connection', (socket: any) => {
-    logger.info(`connected: ${socket.id}`)
+    logger.info(`connected ${socket.id}`)
     socket.on('login', async (name: string, fn: any) => {
+      logger.info(`login ${socket.id}, ${name}`)
       users.set(socket.id, name)
       fn(getActiveRooms())
     })
     socket.on('enter-room', (roomId: string) => {
-      logger.info(`enter: ${roomId} <= ${socket.id}`)
+      logger.info(`enter ${roomId} <= ${socket.id}`)
       socket.join(roomId)
       io.emit('update-room-list', getActiveRooms())
     })
     socket.on('send:message', (message: Message) => {
-      logger.info(`message(send): ${message}`)
+      logger.info(`message(send) ${message}`)
       io.sockets.in(message.roomId).emit('rcv:message', message)
     })
     socket.on('disconnect', () => {
       users.delete(socket.id)
-      logger.info(`disconnected: ${socket.id}`)
+      logger.info(`disconnected ${socket.id}`)
     })
     function getActiveRooms() {
       const activeRooms = new Array()

@@ -1,0 +1,10 @@
+{
+  "name": "chat-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "set NODE_ENV=production&& node ./server/build/app.js"
+  },
+  "license": "MIT"
+}

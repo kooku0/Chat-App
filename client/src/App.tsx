@@ -5,7 +5,7 @@ import { PAGE_PATHS } from './constants'
 import Login from './pages/Signin'
 import RoomList from './pages/RoomList'
 import ChatRoom from './pages/ChatRoom'
-import { connectServer } from './store/SocketIO'
+import { connectServer } from './store/socketIO'
 
 const App = () => {
   const dispatch = useDispatch()
