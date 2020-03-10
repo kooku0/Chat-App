@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useName from '../../hooks/useName'
 import parseDateToString from '../../utils/parseDateToString'
 
@@ -10,7 +10,9 @@ interface ChatItemProps {
   date: Date
 }
 
-function ChatItem({ writer, message, date }: ChatItemProps) {
+function ChatItem(props: ChatItemProps) {
+  useEffect(() => {}, [props])
+  const { writer, message, date } = props
   const name = useName()
   return (
     <div className={`d-flex justify-content-${writer !== name ? 'start' : 'end'} mb-4`}>
