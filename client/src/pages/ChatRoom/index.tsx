@@ -5,6 +5,7 @@ import ChatBody from '../../components/ChatBody'
 import ChatFooter from '../../components/ChatFooter'
 import useMessages from '../../hooks/useMessages'
 import useRoomInfo from '../../hooks/useRoomInfo'
+import useRoomActions from '../../hooks/useRoomActions'
 import useMessageActions from '../../hooks/useMessageActions'
 
 import './style.scss'
@@ -13,11 +14,12 @@ function ChatRoom({ match }: RouteComponentProps<{ id: string }>) {
   const roomId = match.params?.id
   const messages = useMessages(roomId)
   const roomInfo = useRoomInfo(roomId)
-  const { recieveMessage, sendMessage, addMsgToStore, socketOff } = useMessageActions(roomId)
+  const { recieveMessage, sendMessage, addMsgToStore } = useMessageActions(roomId)
+  const { onLeaveRoom } = useRoomActions()
   useEffect(() => {
     recieveMessage()
     return () => {
-      socketOff()
+      onLeaveRoom()
     }
   }, [])
   return (

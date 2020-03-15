@@ -1,16 +1,16 @@
-import { useDispatch } from 'react-redux'
-import { useCallback } from 'react'
-import { joinRoom, removeRoom } from '../store/rooms'
+import { useSelector } from 'react-redux'
+import { RootState } from '../store'
 
-export default function useRoomActions(roomId: string, socketId: string, name: string) {
-  const dispatch = useDispatch()
-
-  const onJoin = useCallback(() => dispatch(joinRoom(roomId, socketId, name)), [
-    dispatch,
-    roomId,
-    name,
-  ])
-  const onRemove = useCallback(() => dispatch(removeRoom(roomId)), [dispatch, roomId])
-
-  return { onJoin, onRemove }
+export default function useEnterRoom() {
+  const socket = useSelector((state: RootState) => state.socketIO.socket)
+  const onJoinRoom = (roomName: string) => {
+    socket?.emit('enter-room', roomName)
+  }
+  const onLeaveRoom = () => {
+    socket?.off('rcv:message')
+  }
+  return {
+    onJoinRoom,
+    onLeaveRoom,
+  }
 }

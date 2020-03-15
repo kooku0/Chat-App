@@ -39,9 +39,8 @@ export default function useMessageActions(roomId: string) {
     (message: string) => dispatch(addMessage(roomId, generate(12), writer, message, new Date())),
     [dispatch],
   )
-  const socketOff = useCallback(() => socket?.off('rcv:message'), [socket])
+
   return {
-    socketOff,
     sendMessage,
     recieveMessage,
     addMsgToStore,
