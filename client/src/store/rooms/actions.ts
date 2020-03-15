@@ -5,9 +5,12 @@ export const REMOVE_ROOM = 'rooms/REMOVE_ROOM' as const
 export const JOIN_ROOM = 'rooms/JOIN_ROOM' as const
 export const SET_ROOMS = 'rooms/SET_ROOMS' as const
 
-export const addRoom = (member: Member) => ({
+export const addRoom = (member: Member, roomId: string) => ({
   type: ADD_ROOM,
-  payload: member,
+  payload: {
+    member,
+    roomId,
+  },
 })
 export const removeRoom = (roomId: string) => ({
   type: REMOVE_ROOM,

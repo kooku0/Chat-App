@@ -16,7 +16,7 @@ function ChatRoom({ match }: RouteComponentProps<{ id: string }>) {
   const { recieveMessage, sendMessage, addMsgToStore, socketOff } = useMessageActions(roomId)
   useEffect(() => {
     recieveMessage()
-    return function cleanup() {
+    return () => {
       socketOff()
     }
   }, [])

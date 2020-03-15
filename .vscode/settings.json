@@ -3,7 +3,7 @@
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true
   },
-  "[typescriptreact]": {
+  "[typescriptvue]": {
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true
   },

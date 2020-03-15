@@ -1,27 +1,24 @@
-import React, { useState, ChangeEvent, KeyboardEvent, useCallback } from 'react'
+import React, { useState, useCallback, ChangeEvent } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import ListHeader from '../../components/ListHeader'
 import ListBody from '../../components/ListBody'
 import useUpdateRooms from '../../hooks/useUpdateRooms'
 import useEnterRoom from '../../hooks/useEnterRoom'
+import useInput from '../../hooks/useInput'
 
 import './style.scss'
 
 function RoomList({ history }: RouteComponentProps) {
-  const [value, setValue] = useState('')
+
   const [checkValue, toggleCheck] = useState(false)
   const onEnterRoom = useEnterRoom()
   useUpdateRooms()
-  const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
-    setValue(target.value)
+  const callBackFunc = (roomId: string) => {
+    onEnterRoom(roomId)
+    history.push(`/chat/${roomId}`)
   }
-  const handleKeyDown = ({ keyCode }: KeyboardEvent) => {
-    if (keyCode === 13 && value !== '') {
-      onEnterRoom(value)
-      history.push(`/chat/${value}`)
-      setValue('')
-    }
-  }
+  const { value: roomId, onChange, onKeyDown } = useInput('', [callBackFunc])
+
   const handleCheckBox = useCallback(({ target }: ChangeEvent<HTMLInputElement>) => {
     toggleCheck(target.checked)
   }, [])
@@ -30,13 +27,13 @@ function RoomList({ history }: RouteComponentProps) {
     <div className="col-md-4 col-xl-3 chat">
       <div className="card mb-sm-3 mb-md-0 contacts_card">
         <ListHeader
-          roomName={value}
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
+          roomId={roomId}
+          onChange={onChange}
+          onKeyDown={onKeyDown}
           // checked={checkValue}
           toggleCheck={handleCheckBox}
         />
-        <ListBody filterRoomId={value} onClick={handleClick} joinedRoomFlag={checkValue} />
+        <ListBody filterRoomId={roomId} onClick={handleClick} joinedRoomFlag={checkValue} />
         <div className="card-footer"></div>
       </div>
     </div>

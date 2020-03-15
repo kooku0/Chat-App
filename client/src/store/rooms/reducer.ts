@@ -6,10 +6,9 @@ const initialState: RoomsState = []
 function rooms(state: RoomsState = initialState, action: RoomsAction) {
   switch (action.type) {
     case ADD_ROOM:
-      const nextId = 'asfd'
       return state.concat({
-        roomId: nextId,
-        members: [action.payload],
+        roomId: action.payload.roomId,
+        members: [action.payload.member],
       })
     case REMOVE_ROOM:
       return state.filter(room => room.roomId !== action.payload)

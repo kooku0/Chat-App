@@ -3,14 +3,14 @@ import React, { ChangeEvent } from 'react'
 import './style.scss'
 
 interface ListHeaderProps {
-  roomName: string
+  roomId: string
   onChange: (event: ChangeEvent<HTMLInputElement>) => void
   onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void
   // checked: boolean
   toggleCheck: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-function ListHeader({ roomName, onChange, onKeyDown, toggleCheck }: ListHeaderProps) {
+function ListHeader({ roomId, onChange, onKeyDown, toggleCheck }: ListHeaderProps) {
   return (
     <div className="card-header">
       <div className="input-group">
@@ -19,7 +19,7 @@ function ListHeader({ roomName, onChange, onKeyDown, toggleCheck }: ListHeaderPr
           placeholder="채팅방 추가 및 참여"
           name=""
           className="form-control search"
-          value={roomName}
+          value={roomId}
           onChange={onChange}
           onKeyDown={onKeyDown}
         />
